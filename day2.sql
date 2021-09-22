@@ -1,8 +1,3 @@
-create table section(
-id int,
-name varchar(34),
-address varchar(43),
-);
 
 delete from dept where id>2;
 
