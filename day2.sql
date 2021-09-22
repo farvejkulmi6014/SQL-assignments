@@ -33,5 +33,38 @@ references sales(salesid)
 insert into sales values(1,'rahul',819703);
 insert into sales values(2,'mayank',567827);
 
+
+insert into salesorder values(1,'soap','byd');
+insert into sales values(2,'brush','sbc');
+
 select * from sales;
 select * from salesorder;
+
+
+
+create table grofer(
+groid int not null primary key,
+groname varchar(15),
+mob int
+);
+
+create table groagent(
+id int primary key,
+groprod varchar(15),
+groaddress varchar(15),
+salesid int,
+constarints FK_salesorder foreign key(salesid)
+references grofer(groid)
+)
+
+insert into groper values(1,'sush',819703);
+insert into groper values(2,'maya',567827);
+
+insert into groagent values(1,'paste','tmk');
+insert into groagent values(2,'cnd','glb');
+
+select * from grofer;
+select * from groagent;
+
+
+
