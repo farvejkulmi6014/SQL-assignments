@@ -1,0 +1,117 @@
+use db_shopon;
+
+-- 1. List all the products
+SELECT * FROM PRODUCT;
+
+-- 2. List product name and product price
+Select productname,price from product;
+
+-- 3. List all customers
+select * from customer;
+
+-- 4. List Customername and mobile no
+select customername,mobileno from customer;
+
+-- 5. List all orders
+select * from orderd;
+
+-- 6. List customer id and orderd date
+select customerid,orderdate from orderd; 
+
+-- 7. List all the order item
+select * from orderitem;
+
+-- 8. List all the product with product id 100
+select productname from product where pid=100;
+
+-- 9. List all the info of product with name Vivo V3
+select * from product where productname='S5';
+
+-- 10. List pid, productname, price of the phone named "Galaxy Grand"
+select pid,productname,price from product where productname='Galaxy Grand';
+
+-- 11. Print product info for all the product with category id 10003
+Select * from product where categoryid=10003;
+
+-- 12. List all the customers address with city as 'Bangalore'
+select * from customer where customerid IN
+(
+Select customerid from customeraddress where city='Bangalore'
+);
+
+-- 13. List all the orders which was ordered on '2013-02-02'
+select * from orderd where orderdate >='2013-01-01' and orderdate<='2013-12-31';
+
+-- 14. Print all the orders of the customer with id 1
+select * from orderd where customerid=1;
+
+-- 15. List all the product with company id 1001 or 1002
+select productname from product where companyid=1001 OR companyid=1002;
+select productname from product where companyid in(1001,1002);
+
+-- 16. List all the product with price more than 30000
+select productname from product where price>=30000;
+
+-- 17. List all the products of the category id 10002 or 10003 with
+-- the price more than 30000
+select productname from product where categoryid in(10002,10003) and price>=30000;
+
+-- 18. List all the order customer id 1 or 4 ordered on '2013-02-02'
+-- or '2013-02-07'
+select * from orderd where customerid in (1,4) and orderdate in('2013-01-01','2013-12-31');
+
+-- 19. List all the customer whos name starts with character 'A'
+select * from customer Where customername LIKE'A%';
+
+-- 20. List all the customer who name ends with character 'i'
+select * from customer where customername Like '%i'; 
+
+-- 21. List all the customer whos name starts with 'R' and ends with 'i'
+select * from customer where customername like 'R%' and customername like '%i';
+
+
+-- 22. List all the orders for the year 2013
+select * from orderd where orderdate like '2013%';
+
+-- 23. List all the products which are not from the category 10001
+select * from product where categoryid!=10001;
+
+-- 24. List all the products which are not from the category 10001
+-- or 10003 with the price more than 30000 and product name starts
+-- with '6'
+select * from product where categoryid not in (10001,10003)
+and price>=30000 and productname like '6%';
+
+-- 25. List all the customers whos mobile no doesnt start with 9
+select * from customer where mobileno not like '9%';
+
+-- 26. List all the nokia phones
+select * from product where companyid=(select companyid from company where companyname='nokia');
+
+select p.productname,c.companyname from product p
+inner join company c on
+c.companyid=p.companyid
+having c.companyname='nokia';
+
+-- 27. List all the samsung phones
+select * from product where companyid=(select companyid from company where companyname='samsung');
+
+select p.productname,c.companyname from product p
+inner join company c on
+c.comopanyid=p.companyid
+having c.companyname='samsung';
+
+-- 28. List all the iphone phones
+select * from product where companyid=(select companyid from company where companyname='iphone');
+
+select p.productname,c.companyname from product p
+inner join company c on 
+c.companyid=p.companyid
+having c.companyname='iphone';
+
+-- 29. List all the customers from Bangalore
+select * from customer where customerid IN
+(
+select customerid from customeraddress where city ='Bangalore'
+);
+
